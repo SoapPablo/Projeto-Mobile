@@ -12,16 +12,17 @@ const NavegacaoAba = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: 'black',
-        inactiveTintColor: 'black',
-        style: { backgroundColor: '#800080' },
+        activeTintColor: 'purple',
+        inactiveTintColor: 'purple',
+        style: { backgroundColor: 'purple' }, // Defina a cor roxa aqui
       }}>
       <Tab.Screen
         name="Buscar Eventos"
         component={BuscarEventos}
+        style={{ color: 'purple' }}
         options={{
           tabBarIcon: ({ color }) => (
-            <FontAwesome name="search" size={24} color={'black'} />
+            <FontAwesome name="search" size={24} color={'purple'} />
           ),
         }}
       />
@@ -30,7 +31,7 @@ const NavegacaoAba = () => {
         component={AppRoot}
         options={{
           tabBarIcon: ({ color }) => (
-            <FontAwesome5 name="calendar-alt" size={24} color="black" />
+            <FontAwesome5 name="calendar-alt" size={24} color="purple" />
           ),
         }}
       />
@@ -39,7 +40,7 @@ const NavegacaoAba = () => {
         component={CriaEventos}
         options={{
           tabBarIcon: ({ color }) => (
-            <FontAwesome name="plus" size={24} color={'black'} />
+            <FontAwesome name="plus" size={24} color={'purple'} />
           ),
         }}
       />
@@ -48,7 +49,7 @@ const NavegacaoAba = () => {
         component={Perfil}
         options={{
           tabBarIcon: ({ color }) => (
-            <FontAwesome name="gear" size={24} color="black" />
+            <FontAwesome name="gear" size={24} color="purple" />
           ),
         }}
       />

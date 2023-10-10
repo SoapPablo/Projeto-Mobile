@@ -1,4 +1,14 @@
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  Button,
+  TouchableOpacity, // Alterado para TouchableOpacity
+} from 'react-native';
+import * as React from 'react';
+import { Dialog, Portal, Provider } from 'react-native-paper'; // Importe Provider do react-native-paper
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
@@ -69,22 +79,54 @@ function CriadosScreen() {
       imageSource: require('../assets/palestra1.jpg'),
     },
   ];
+  const [visible, setVisible] = React.useState(false);
+
+  const showDialog = () => setVisible(true);
+
+  const hideDialog = () => setVisible(false);
 
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView>
-        {eventos.map((evento, index) => (
-          <EventCard
-            key={index}
-            title={evento.title}
-            date={evento.date}
-            time={evento.time}
-            description={evento.description}
-            imageSource={evento.imageSource}
-          />
-        ))}
-      </ScrollView>
-    </View>
+    <Provider>
+      <View style={{ flex: 1 }}>
+        <ScrollView>
+          {eventos.map((evento, index) => (
+            <EventCard
+              key={index}
+              title={evento.title}
+              date={evento.date}
+              time={evento.time}
+              description={evento.description}
+              imageSource={evento.imageSource}
+            />
+          ))}
+          <TouchableOpacity style={styles.button} onPress={showDialog}>
+            <Text style={{ color: 'white', textAlign: 'center' }}>
+              CANCELAR EVENTO
+            </Text>
+          </TouchableOpacity>
+        </ScrollView>
+
+        <Portal>
+          <Dialog
+            visible={visible}
+            onDismiss={hideDialog}
+            style={{ backgroundColor: 'white' }}>
+            <Dialog.Title style={{ color: 'black' }}>
+              Cancelar Evento
+            </Dialog.Title>
+            <Dialog.Content>
+              <Text style={{ color: 'black' }}>
+                Deseja realmente cancelar o evento?
+              </Text>
+            </Dialog.Content>
+            <Dialog.Actions>
+              <Button onPress={hideDialog}>Cancelar</Button>
+              <Button onPress={hideDialog}>Voltar</Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
+      </View>
+    </Provider>
   );
 }
 
@@ -130,7 +172,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'purple',
     maxHeight: 300,
     borderRadius: 8,
-    marginBottom: 10,
     marginTop: 10,
     padding: 10,
     shadowColor: '#000',
@@ -138,7 +179,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 3,
-    marginHorizontal: 10, // Margem horizontal para alinhar com o Appbar
+    marginHorizontal: 10,
   },
   image: {
     width: 100,
@@ -163,5 +204,19 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     color: 'white',
+  },
+  button: {
+    backgroundColor: 'red',
+    colors: 'white',
+    justifyContent: 'center',
+    height: 30,
+    borderRadius: 8,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 3,
+    marginHorizontal: 10,
   },
 });
