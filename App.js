@@ -1,20 +1,13 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import 'react-native-gesture-handler';
+import NavegacaoAba from './routes/NavegacaoAba';
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>'Meu App'</Text>
-    </View>
+    <NavigationContainer>
+      <NavegacaoAba />
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-  },
-});
 
 export default App;
