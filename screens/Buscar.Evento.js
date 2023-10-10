@@ -7,7 +7,7 @@ import {
   ScrollView,
   Button,
 } from 'react-native';
-
+import { Searchbar } from 'react-native-paper';
 
 const EventCard = ({ title, date, time, description, imageSource }) => (
   <View style={styles.card}>
@@ -25,6 +25,10 @@ const EventCard = ({ title, date, time, description, imageSource }) => (
 );
 
 const BuscarEventos = ({ navigation }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const onChangeSearch = (query) => setSearchQuery(query);
+
   // Dados simulados de eventos
   const eventos = [
     {
@@ -87,6 +91,11 @@ const BuscarEventos = ({ navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
+      <Searchbar
+        placeholder="Pesquisar eventos"
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+      />
       {eventos.map((evento, index) => (
         <EventCard key={index} {...evento} />
       ))}
