@@ -5,10 +5,11 @@ import {
   StyleSheet,
   ScrollView,
   Button,
-  TouchableOpacity, // Alterado para TouchableOpacity
+  TouchableOpacity, // Importe TouchableOpacity
+  Pressable,
 } from 'react-native';
 import * as React from 'react';
-import { Dialog, Portal, Provider } from 'react-native-paper'; // Importe Provider do react-native-paper
+import { Dialog, Portal, Provider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
@@ -99,29 +100,31 @@ function CriadosScreen() {
               imageSource={evento.imageSource}
             />
           ))}
-          <TouchableOpacity style={styles.button} onPress={showDialog}>
+          <Pressable
+            style={styles.button}
+            onPress={showDialog} // Use onPress em vez de onPress
+          >
             <Text style={{ color: 'white', textAlign: 'center' }}>
               CANCELAR EVENTO
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         </ScrollView>
 
         <Portal>
           <Dialog
             visible={visible}
             onDismiss={hideDialog}
-            style={{ backgroundColor: 'white' }}>
-            <Dialog.Title style={{ color: 'black' }}>
-              Cancelar Evento
-            </Dialog.Title>
+            style={{ backgroundColor: 'white' }}
+          >
+            <Dialog.Title style={{ color: 'black' }}>Cancelar Evento</Dialog.Title>
             <Dialog.Content>
               <Text style={{ color: 'black' }}>
                 Deseja realmente cancelar o evento?
               </Text>
             </Dialog.Content>
             <Dialog.Actions>
-              <Button onPress={hideDialog}>Cancelar</Button>
-              <Button onPress={hideDialog}>Voltar</Button>
+              <Button title='Cancelar' onPress={hideDialog}></Button>
+              <Button title='Voltar' onPress={hideDialog}></Button>
             </Dialog.Actions>
           </Dialog>
         </Portal>
@@ -153,10 +156,10 @@ export default function App() {
           activeTintColor: 'white',
           inactiveTintColor: 'white',
           style: {
-            backgroundColor: 'purple', // Define a cor de fundo das abas como purple
+            backgroundColor: 'purple',
           },
           indicatorStyle: {
-            backgroundColor: 'white', // Define a cor da linha indicadora como white
+            backgroundColor: 'white',
           },
         }}>
         <Tab.Screen name="Confirmados" component={ConfirmadosScreen} />
@@ -207,7 +210,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'red',
-    colors: 'white',
+    color: 'white', // Corrige o erro de sintaxe
     justifyContent: 'center',
     height: 30,
     borderRadius: 8,

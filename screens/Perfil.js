@@ -2,7 +2,7 @@ import { FontAwesome5, AntDesign } from '@expo/vector-icons';
 import { Avatar, Button } from 'react-native-paper';
 import { View, StyleSheet, Text } from 'react-native';
 
-const Perfil = () => {
+const Perfil = (props) => {
   return (
     <View style={styles.container}>
       <Avatar.Image
@@ -29,7 +29,7 @@ const Perfil = () => {
         style={styles.buttonRed}
         icon={() => <AntDesign name="logout" size={24} color="white" />}
         mode="contained"
-        onPress={() => console.log('Sair da conta Pressionado')}>
+        onPress={() => props.onLogout()}>
         Sair da conta
       </Button>
     </View>
