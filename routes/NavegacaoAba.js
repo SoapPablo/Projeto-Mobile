@@ -1,9 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import BuscarEventos from '../screens/BuscarEventos';
+import BuscarEventos from '../screens/BuscarEvento';
 import CriaEventos from '../screens/CriarEventos';
 import Perfil from '../screens/Perfil';
-import AppRoot from '../screens/MeusEventos'; // Corrigindo a importação do componente AppRoot
+import AppRoot from '../screens/MeusEventos';
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();

@@ -4,8 +4,7 @@ import 'react-native-gesture-handler';
 import Login from '../screens/Login';
 import EsqueceuSenha from '../screens/EsqueceuSenha';
 import Cadastro from '../screens/Cadastro';
-import BuscarEventos from '../screens/BuscarEventos'; // Importe a tela BuscarEventos aqui
-
+import BuscarEventos from '../screens/BuscarEvento';
 const Stack = createStackNavigator();
 
 const NavegacaoPilha = (props) => {
